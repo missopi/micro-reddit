@@ -8,7 +8,7 @@ gem 'bootsnap', require: false
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'puma', '>= 5.0'
-gem 'rails", "~> 7.1.3'
+gem 'rails', '~> 7.1.3'
 gem 'sprockets-rails'
 gem 'sqlite3', '~> 1.4'
 gem 'stimulus-rails'
