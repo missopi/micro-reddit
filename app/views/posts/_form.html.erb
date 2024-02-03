@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="mb-3">
+    <%= form.number_field :user_id, id: :post_user_id, class:"form-control", value:current_user.id, type: :hidden %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :title, style: "display: block", class:"form-label"  %>
     <%= form.text_field :title, class:"form-control" %>
   </div>
