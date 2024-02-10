@@ -9,3 +9,8 @@
     <%= link_to "Delete this post", @post, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn btn-danger" %>
   <% end %>
 </div>
+<br>
+<h4>Comments</h4>
+<%= render @post.comments %>
+<br>
+<%= render 'comments/form' %>
