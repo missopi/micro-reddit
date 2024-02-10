@@ -2,10 +2,14 @@
 
 # controller for comments
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
+  def new
+    @comment = current_user.comments.build
+  end
+
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    redirect_to post_path(@post)
+    @comment = current_user.comments.build(comment_params)
   end
 
   private
