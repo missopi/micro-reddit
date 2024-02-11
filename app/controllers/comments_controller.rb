@@ -2,14 +2,17 @@
 
 # controller for comments
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
-
-  def new
-    @comment = current_user.comments.build
+  def create
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create(params[:comment].permit(:body))
+    redirect_to post_path(@post)
   end
 
-  def create
-    @comment = current_user.comments.build(comment_params)
+  def destroy
+    @post = Post.find(params[:id])
+    @comment = @post.comments.where(post_id: @post.id)
+    @comment.each(&:destroy)
+    redirect_to post_path(@post)
   end
 
   private

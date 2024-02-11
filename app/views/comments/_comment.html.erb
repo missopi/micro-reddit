@@ -1,4 +1,4 @@
 <p>
-  <strong>Comment:</strong>
   <%= comment.body %>
+  <%= link_to "Delete Comment", post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %>
 </p>
