@@ -9,22 +9,24 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
+    @comment.post_id = @post.id
+    @comment.save!
+
     respond_to do |format|
-      if @comment.save!
-        format.html { redirect_to @post, notice: 'Post was successfully commented.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { redirect_to @post, alert: 'post not commented' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @post, notice: 'Post was successfully commented.' }
+      format.json { render :show, status: :created, location: @post }
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
-    @comment = @post.comments.where(post_id: @post.id)
-    @comment.each(&:destroy)
-    redirect_to post_path(@post)
+    @comment = Comment.find(params[:id])
+    @comment.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to @post, notice: 'Comment was deleted.' }
+      format.json { head :no_content }
+    end
   end
 
   private
