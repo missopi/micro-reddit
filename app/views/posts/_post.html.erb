@@ -8,7 +8,10 @@
       <p>
         <%= post.body %>
       </p>
-      <%= render "posts/upvote_link", post: post %>
+      <div>
+        <%= post.cached_weighted_score %>
+        <%= render "posts/upvote_link", post: post %>
+      </div>
     </div>
   </div>
 </div>
