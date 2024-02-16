@@ -10,6 +10,11 @@
   <% end %>
 </div>
 <br>
-<%= render @post.comments %>
+<div>
+  <% if user_signed_in? %>
+    <%= render @post.comments %>
+    <br>
+    <%= render 'comments/form' %>
+  <% end %>
+</div>
 <br>
-<%= render 'comments/form' %>
