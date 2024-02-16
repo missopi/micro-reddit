@@ -67,6 +67,17 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: 'Not Authorised To Edit This Post.' if @post.nil?
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    if current_user.voted_up_on? @post
+      @post.unvote_by current_user
+    else
+      @post.upvote_by current_user
+    end
+    respond_to(&:js)
+    render 'vote.js.erb'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
